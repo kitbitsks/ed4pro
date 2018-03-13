@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mat">
+
+  <head>
+
+
+ 	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Premier League</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Coiny|Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon|Reenie+Beanie" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Coiny" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="lue.css" rel="stylesheet">
+    <script type="text/JavaScript" src="alerting.js"></script>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">HOME</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">MATCH DETAILS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading"></h1>
+              <p class="intro-text"></p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger" style="margin-top: 400px;">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center" ng-controller = "matcont as matchess" >
+       <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto" ng-controller="togglefour as tg4">
+          <a href ="" ng-click="tg4.togglingfour()"> Click here for filtering...</a>
+          	 <div  ng-hide="tg4.customfour" class="input-group">
+          	  	 	<div class="col-md-12 mx-auto">
+  					<input type="text" class="form-control" ng-model="letter"  placeholder="Enter a starting letter of team to filter" aria-describedby="basic-addon2">
+  					<br/>
+  				<div class="row">
+  				<div class="col-md-6 mx-auto">
+  					<input type="text" class="form-control" ng-model="year" placeholder="Enter year of match to filter" aria-describedby="basic-addon2"> &nbsp;</div>
+  				<div class="col-md-6 mx-auto">
+  					<input type="text" class="form-control" ng-model="score" placeholder="Enter score to filter" aria-describedby="basic-addon2">
+				</div>
+				</div>
+					</div>
+			</div>
+          	<div ng-repeat="soc2 in matchess.matchcontent.soccermatch">	
+          	<h1 style="font-family: 'Gloria Hallelujah', cursive; font-family: 'Coiny', cursive; color: red"><br/>{{soc2.name}}</h1>
+          	<div ng-repeat="soc1 in soc2.rounds ">
+          	<p><h2 style="font-family: 'Gloria Hallelujah', cursive; color:green">{{soc1.name}}</h2></p>
+          	<div ng-repeat="soc in soc1.matches | startsWithLetter:letter:year:score" ng-controller="toggletwo as tgtwo">
+          		
+          		<div  ng-controller="toggle as tg" >
+          			<div ng-controller="togglethree as tgthree">
+          	<a href="" style="font-family: 'Reenie Beanie', cursive; font-family: 'Coming Soon', cursive;color: #94f7bf; font-size: 1.5em" ng-click="tgtwo.togglingtwo()">{{soc.team1.name}} </a>&nbsp;<a href="" style="font-family: 'Reenie Beanie', cursive; font-family: 'Coming Soon', cursive;color: #ffa73d; font-size: 1.5em" ng-click="tg.toggling()">VS</a>&nbsp;<a href="" style="font-family: 'Reenie Beanie', cursive; font-family: 'Coming Soon', cursive;color: #94f7bf; font-size: 1.5em" ng-click="tgthree.togglingthree()"> {{soc.team2.name}}</a>
+          	
+          	<div ng-hide="tg.custom">
+          		<p><b><a style=" font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Match Played on :</a></b><a style=" font-family: 'Amatic SC', cursive; color: #e8e23e; font-size: 1.5em"><b> {{soc.date}}</b></a><br/>
+          		<b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Team I :</a></b><a style=" font-family: 'Amatic SC', cursive; color: #e8df68; font-size: 2em"><b>{{soc.team1.name}}	<label style="color: #ada20d"> ({{soc.team1.code}})</label></b></a><br/>
+          		<b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Team II :</a></b><a style=" font-family: 'Amatic SC', cursive; color: #e8df68; font-size: 2em"><b>{{soc.team2.name}}<label style="color: #ada20d"> ({{soc.team2.code}})</label></b></a><br/>
+          		<b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Score Card :- </a></b><br/>
+          		<a style="font-family: 'Amatic SC', cursive;font-family: 'Coiny', cursive; font-size: 1.5em; color: #ff7f00">{{soc.team1.code}} :</a> <a style=" font-family: 'Amatic SC', cursive; color: #72a8ff; font-size: 1.5em"><b>{{soc.score1}}</b></a> &nbsp; <a style="font-family: 'Amatic SC', cursive;font-family: 'Coiny', cursive; font-size: 1.5em; color: #ff7f00">{{soc.team2.code}} :</a> <a style=" font-family: 'Amatic SC', cursive; color: #72a8ff; font-size: 1.5em"><b>{{soc.score2}}</b></a></p>
+          	</div>
+
+          	<div ng-hide="tgtwo.customtwo" ng-controller="showsome as sss" ng-init="sss.showing(soc.team1.name)">
+          	<b><a style=" font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Played by <a style="font-family: 'Amatic SC', cursive;font-family: 'Coiny', cursive; font-size: 2em; color: #ff7f00">{{soc.team1.name}} : </a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.5em">{{sss.filter[0]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Won :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[1]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Tie :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[3]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Lost :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[4]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Goals :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #0ef24f; font-size: 2.5em">{{sss.filter[2]}}</a></b><br/>
+          	</div>
+
+          	<div ng-hide="tgthree.customthree" ng-controller="showsome as sss" ng-init="sss.showing(soc.team2.name)">
+          		<b><a style=" font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Played by <a style="font-family: 'Amatic SC', cursive;font-family: 'Coiny', cursive; font-size: 2em; color: #ff7f00">{{soc.team2.name}} : </a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.5em">{{sss.filter[0]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Won :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[1]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Tie :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[3]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Matches Lost :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #ebff3a; font-size: 1.8em">{{sss.filter[4]}}</a></b><br/>
+         <b><a style="font-family: 'Amatic SC', cursive; color: #e83e3e; font-size: 1.5em">Total Goals :</a></b><b><a style=" font-family: 'Amatic SC', cursive; color: #0ef24f; font-size: 2.5em">{{sss.filter[2]}}</a></b><br/>
+          		</div>
+        	  </div>
+     	 	</div>
+          </div>
+       	 </div>
+    	</div>
+      </div>
+    </sectio1>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+     <script src="app.js" type="text/JavaScript"></script>
+  </body>
+
+</html>
